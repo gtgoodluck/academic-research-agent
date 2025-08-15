@@ -1,43 +1,47 @@
 # 🎓 Academic Research Agent
 
-An intelligent AI-powered system that searches Google Scholar, finds academic papers, and provides detailed analysis using local AI models. Perfect for researchers, students, and academics who want to quickly discover and analyze research papers.
+An intelligent AI-powered system that searches Google Scholar, finds academic papers, and provides detailed analysis using **multiple LLM providers**. Choose between local Ollama models or cloud-based OpenAI/Anthropic for maximum flexibility.
 
 ![Python](https://img.shields.io/badge/python-v3.8+-blue.svg)
+![LLM Support](https://img.shields.io/badge/LLM-Ollama%20|%20OpenAI%20|%20Anthropic-green.svg)
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
 ![Status](https://img.shields.io/badge/status-active-success.svg)
 
 ## 🌟 Features
 
 - **🔍 Smart Paper Search**: Automatically searches Google Scholar for papers by author name
-- **📊 Intelligent Analysis**: Uses local Ollama AI to summarize and analyze research papers
+- **🤖 Multi-Provider AI**: Choose from Ollama (local), OpenAI (cloud), or Anthropic (cloud)
+- **📊 Intelligent Analysis**: AI-powered paper summarization and analysis
 - **🎯 Interactive Selection**: Choose which papers to analyze in detail
-- **🦙 Local AI**: Completely free using Ollama Llama - no API keys needed
+- **💰 Flexible Pricing**: Free local models or pay-per-use cloud models
 - **🎤 Demo Modes**: Perfect for lectures, presentations, and educational demos
 - **📚 Multiple Search Strategies**: Precise author search with smart fallback options
+- **🔐 Secure**: API keys managed via environment variables
 
 ## 🚀 Quick Start
 
 ### Prerequisites
 
 - Python 3.8+
-- Ollama installed locally
+- Choose your AI provider:
+  - **Ollama** (local, free) - Requires Ollama installation
+  - **OpenAI** (cloud, paid) - Requires API key
+  - **Anthropic** (cloud, paid) - Requires API key
 - Chrome/Chromium browser
 
 ### Installation
 
 1. **Clone the repository**
-
    ```bash
    git clone https://github.com/yourusername/academic-research-agent.git
    cd academic-research-agent
    ```
 
 2. **Set up virtual environment (recommended)**
-
    ```bash
    # Create virtual environment
    python -m venv research_agent_env
-
+   
    # Activate virtual environment
    # On Windows:
    research_agent_env\Scripts\activate
@@ -46,21 +50,19 @@ An intelligent AI-powered system that searches Google Scholar, finds academic pa
    ```
 
 3. **Install dependencies**
-
    ```bash
    pip install -r requirements.txt
    playwright install chromium
    ```
 
-4. **Install and start Ollama**
-
+3. **Install and start Ollama**
    ```bash
    # Install Ollama (visit https://ollama.ai for your OS)
    ollama pull llama3.2
    ollama serve
    ```
 
-5. **Run the agent**
+4. **Run the agent**
    ```bash
    python research_agent.py
    ```
@@ -72,8 +74,21 @@ An intelligent AI-powered system that searches Google Scholar, finds academic pa
 ```python
 from research_agent import AcademicResearchAgent
 
-# Initialize the agent
-agent = AcademicResearchAgent()
+# Option 1: Use Ollama (local, free)
+agent = AcademicResearchAgent.create_ollama_agent()
+
+# Option 2: Use OpenAI (cloud, paid)
+agent = AcademicResearchAgent.create_openai_agent()
+
+# Option 3: Use Anthropic (cloud, paid)  
+agent = AcademicResearchAgent.create_anthropic_agent()
+
+# Option 4: Custom configuration
+agent = AcademicResearchAgent(
+    provider="openai", 
+    model="gpt-4", 
+    api_key="your-key"
+)
 
 # Search for papers by an author
 results = agent.research_papers_interactive("Geoffrey Hinton")
@@ -85,27 +100,21 @@ print(results["findings"])
 The agent offers three different modes:
 
 #### 1. 🎯 Single Research Demo
-
 Perfect for one-off research sessions
-
 ```bash
 python research_agent.py
 # Select option 1
 ```
 
 #### 2. 🔄 Interactive Research Mode
-
 Research multiple academics in one session
-
 ```bash
 python research_agent.py
 # Select option 2
 ```
 
 #### 3. 🎤 Lecture Demo Mode
-
 Optimized for live demonstrations and presentations
-
 ```bash
 python research_agent.py
 # Select option 3
@@ -123,8 +132,9 @@ python research_agent.py
                                 │
                                 ▼
                        ┌──────────────────┐
-                       │   Ollama Llama   │
-                       │   (Local AI)     │
+                       │  AI Provider     │
+                       │ Ollama/OpenAI/   │
+                       │ Anthropic        │
                        └──────────────────┘
 ```
 
@@ -132,7 +142,7 @@ python research_agent.py
 
 1. **🧠 LangChain Agent**: Orchestrates the research process using ReAct pattern
 2. **🕷️ Playwright**: Handles web scraping from Google Scholar
-3. **🤖 Ollama**: Provides local AI analysis and summarization
+3. **🤖 Multi-Provider AI**: Flexible AI backend (Ollama, OpenAI, or Anthropic)
 4. **⚙️ Tools System**: Modular tools for search and analysis
 
 ### Available Tools
@@ -140,10 +150,33 @@ python research_agent.py
 - **`scholar_search`**: Search Google Scholar for papers by author name
 - **`paper_analyzer`**: Analyze and summarize research papers from URLs
 
+## 🤖 **AI Provider Comparison**
+
+| Provider | Cost | Speed | Quality | Privacy | Setup |
+|----------|------|-------|---------|---------|--------|
+| **Ollama** | Free | Medium | Good | Complete | Complex |
+| **OpenAI** | Paid | Fast | Excellent | Shared | Simple |
+| **Anthropic** | Paid | Fast | Excellent | Shared | Simple |
+
+### **When to Use Each Provider:**
+
+- **🦙 Ollama**: Research, education, privacy-focused work
+- **🤖 OpenAI**: Production applications, high throughput
+- **🧠 Anthropic**: Complex analysis, safety-critical applications
+
 ## 📖 Example Output
 
 ```
 🎓 Academic Research Agent processing: Geoffrey Hinton
+
+🔧 **Choose your AI provider:**
+1. 🦙 Ollama (Local, Free)
+2. 🤖 OpenAI (Cloud, Paid)  
+3. 🧠 Anthropic (Cloud, Paid)
+
+Select provider (1-3): 2
+🤖 Initializing OpenAI with model: gpt-4
+✅ Research agent initialized with OPENAI provider
 
 📚 **Step 1: Finding papers by Geoffrey Hinton**
 
@@ -184,19 +217,16 @@ Enter your choice (1-9): 2
 ## 🎯 Use Cases
 
 ### For Researchers
-
 - Quickly find relevant papers by leading authors
 - Get AI-powered summaries of complex research
 - Discover new papers in your field
 
 ### For Students
-
 - Research prominent academics for assignments
 - Understand complex papers through AI analysis
 - Learn about research trends and methodologies
 
 ### For Educators
-
 - Live demonstrations of AI research capabilities
 - Interactive classroom activities
 - Teaching research methodology
@@ -232,7 +262,7 @@ The agent employs intelligent name matching:
 ```python
 name_variations = [
     author_name.lower(),                    # "geoffrey hinton"
-    author_name_parts[-1],                  # "hinton"
+    author_name_parts[-1],                  # "hinton" 
     f"{author_name_parts[0][0]} {author_name_parts[-1]}"  # "g hinton"
 ]
 ```
@@ -248,12 +278,20 @@ Multiple extraction strategies for different paper formats:
 ```python
 content_selectors = [
     '.ltx_abstract',  # arXiv papers
-    '#abstract',      # Journal papers
+    '#abstract',      # Journal papers  
     '.abstract',      # Generic abstracts
     'article p',      # Article paragraphs
     'p'               # Fallback: any paragraphs
 ]
 ```
+
+## 🗺️ Roadmap
+
+- [x] **v1.0**: Multi-provider CLI agent (Ollama, OpenAI, Anthropic)
+- [ ] **v1.1**: FastAPI web server with REST endpoints  
+- [ ] **v1.2**: Python client library for API integration
+- [ ] **v1.3**: Web frontend interface
+- [ ] **v1.4**: Database integration and result persistence
 
 ## 🤝 Contributing
 
@@ -278,15 +316,23 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ### Common Issues
 
-**1. Playwright Installation**
-
+**3. Playwright Installation**
 ```bash
 # If you get playwright errors
 playwright install chromium
 ```
 
-**2. Ollama Connection**
+**4. API Key Issues**
+```bash
+# Make sure your .env file contains:
+OPENAI_API_KEY=your_actual_key_here
+ANTHROPIC_API_KEY=your_actual_key_here
 
+# Or set environment variables directly:
+export OPENAI_API_KEY=your_key_here
+```
+
+**5. Ollama Connection**
 ```bash
 # Make sure Ollama is running
 ollama serve
@@ -294,13 +340,11 @@ ollama serve
 ollama pull llama3.2
 ```
 
-**3. Google Scholar Rate Limiting**
-
+**6. Google Scholar Rate Limiting**
 - The agent includes automatic delays and error handling
 - If you encounter rate limits, wait a few minutes before retrying
 
-**4. No Papers Found**
-
+**7. No Papers Found**
 - Try alternative spellings of the author name
 - Check if the author has a Google Scholar profile
 - Use the broader search fallback option
