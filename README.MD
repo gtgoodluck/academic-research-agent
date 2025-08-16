@@ -64,7 +64,7 @@ An intelligent AI-powered system that searches Google Scholar, finds academic pa
 
 4. **Run the agent**
    ```bash
-   python research_agent.py
+   python agent.py
    ```
 
 ## 💻 Usage
@@ -72,7 +72,7 @@ An intelligent AI-powered system that searches Google Scholar, finds academic pa
 ### Basic Usage
 
 ```python
-from research_agent import AcademicResearchAgent
+from agent import AcademicResearchAgent
 
 # Option 1: Use Ollama (local, free)
 agent = AcademicResearchAgent.create_ollama_agent()
@@ -102,21 +102,21 @@ The agent offers three different modes:
 #### 1. 🎯 Single Research Demo
 Perfect for one-off research sessions
 ```bash
-python research_agent.py
+python agent.py
 # Select option 1
 ```
 
 #### 2. 🔄 Interactive Research Mode
 Research multiple academics in one session
 ```bash
-python research_agent.py
+python agent.py
 # Select option 2
 ```
 
 #### 3. 🎤 Lecture Demo Mode
 Optimized for live demonstrations and presentations
 ```bash
-python research_agent.py
+python agent.py
 # Select option 3
 ```
 
