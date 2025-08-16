@@ -362,7 +362,6 @@ ollama pull llama3.2
 - [ ] PDF download and local analysis
 - [ ] Citation network visualization
 - [ ] Multi-language support
-- [ ] Integration with reference managers (Zotero, Mendeley)
 - [ ] Batch processing for multiple authors
 - [ ] Export to various formats (PDF, Excel, BibTeX)
 
