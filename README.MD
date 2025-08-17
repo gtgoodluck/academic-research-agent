@@ -324,7 +324,10 @@ playwright install chromium
 
 **4. API Key Issues**
 ```bash
-# Make sure your .env file contains:
+# Copy the environment template first:
+cp .env.example .env
+
+# Then edit .env file to add your actual keys:
 OPENAI_API_KEY=your_actual_key_here
 ANTHROPIC_API_KEY=your_actual_key_here
 
