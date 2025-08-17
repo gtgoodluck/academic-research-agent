@@ -1,7 +1,5 @@
 # 🎓 Academic Research Agent
 
-![Visitor Count](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A//github.com/gtgoodluck/academic-research-agent&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=visits&edge_flat=false)
-
 An intelligent AI-powered system that searches Google Scholar, finds academic papers, and provides detailed analysis using **multiple LLM providers**. Choose between local Ollama models or cloud-based OpenAI/Anthropic for maximum flexibility.
 
 ![Python](https://img.shields.io/badge/python-v3.8+-blue.svg)
