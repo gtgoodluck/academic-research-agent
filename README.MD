@@ -1,5 +1,7 @@
 # 🎓 Academic Research Agent
 
+![Visitor Count](https://profile-counter.glitch.me/gtgoodluck/count.svg)
+
 An intelligent AI-powered system that searches Google Scholar, finds academic papers, and provides detailed analysis using **multiple LLM providers**. Choose between local Ollama models or cloud-based OpenAI/Anthropic for maximum flexibility.
 
 ![Python](https://img.shields.io/badge/python-v3.8+-blue.svg)
